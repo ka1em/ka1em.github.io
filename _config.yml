@@ -1,9 +1,9 @@
-name: Simply Grey
+name: ka1em
 markdown: redcarpet
-highlighter: pygments
-github: https://www.github.com/liamsymonds
-about: I am an independent developer from the sunny UK. I dabble in Ruby, play in C and I'm an avid systems administrator.
+#highlighter: pygments
+github: https://www.github.com/ka1em
+about: XXX
 urls:
     - text: github
-      url: https://github.com/liamsymonds
+      url: https://github.com/ka1em
 baseurl: '/simplygrey-jekyll'
