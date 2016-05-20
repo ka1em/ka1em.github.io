@@ -1,9 +1,0 @@
-name: ka1em
-markdown: redcarpet
-#highlighter: pygments
-github: https://www.github.com/ka1em
-about: XXX
-urls:
-    - text: github
-      url: https://github.com/ka1em
-baseurl: '/simplygrey-jekyll'
