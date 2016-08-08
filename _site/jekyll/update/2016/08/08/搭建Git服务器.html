@@ -71,70 +71,87 @@
 <h1 id="server">1 server配置</h1>
 <p>## 1.1 安装git</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>apt-get install git
+<div class="highlighter-rouge"><pre class="highlight"><code>```shell
+apt-get install git
+```
 </code></pre>
 </div>
-<p>## 1.2 添加git用户</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>adduser git
+<h2 id="git">1.2 添加git用户</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>```shell
+adduser git
+```
 </code></pre>
 </div>
 
 <h2 id="section-1">1.3 创建仓库，并初始化</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>mkdir -p /srv/test-git.git
+<div class="highlighter-rouge"><pre class="highlight"><code>```shell
+mkdir -p /srv/test-git.git
 git init --bare /srv/test-git.git
+```
 </code></pre>
 </div>
 
 <h2 id="section-2">1.4 改变目录权限</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>chown -R git:git /srv/test-git.git
+<div class="highlighter-rouge"><pre class="highlight"><code>```shell
+chown -R git:git /srv/test-git.git
+```
 </code></pre>
 </div>
 
 <h2 id="client">1.5 添加client的公钥</h2>
-<p>编辑此文件，将客户端的公钥添加进此文件</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>编辑此文件，将客户端的公钥添加进此文件
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>emacs /home/git/.ssh/authorized_keys
-</code></pre>
-</div>
+```shell
+emacs /home/git/.ssh/authorized_keys
+```
 
-<p>改变权限</p>
+改变权限
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>chown -R git:git /home/git/.ssh
+```shell
+chown -R git:git /home/git/.ssh
+```
 </code></pre>
 </div>
 
 <h1 id="client-1">2 client配置</h1>
 <p>## 2.1 创建key</p>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>ssh-keygen -t rsa -b 4096 -c <span class="s2">"xxx"</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>```shell
+ssh-keygen -t rsa -b 4096 -c "xxx"
+```
 </code></pre>
 </div>
 
 <h2 id="ssh">2.2 配置ssh</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>emacs ~/.ssh/config
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>```shell
+emacs ~/.ssh/config
+```
 
-<div class="language-config highlighter-rouge"><pre class="highlight"><code><span class="n">Host</span> <span class="n">remote_ip</span> - <span class="n">git</span> <span class="n">server</span>
-<span class="n">HostName</span> <span class="n">remote_ip</span>
-<span class="n">User</span> <span class="n">git</span>
-<span class="n">Port</span> <span class="n">remote_port</span>
-<span class="n">IdentityFile</span> ~/.<span class="n">ssh</span>/<span class="n">id_rsa</span>
+```config
+Host remote_ip - git server
+HostName remote_ip
+User git
+Port remote_port
+IdentityFile ~/.ssh/id_rsa
+```
 </code></pre>
 </div>
 
 <h2 id="test-git">2.3 创建test-git</h2>
 
-<div class="language-shell highlighter-rouge"><pre class="highlight"><code>mkdir ~/test-git
-<span class="nb">cd</span> ~/test-git
+<div class="highlighter-rouge"><pre class="highlight"><code>```shell
+mkdir ~/test-git
+cd ~/test-git
 git init
-touch <span class="nb">test</span>-file
-git add <span class="nb">test</span>-file
-git commit -m <span class="s2">"add test-file"</span>
+touch test-file
+git add test-file
+git commit -m "add test-file"
+```
 </code></pre>
 </div>
 

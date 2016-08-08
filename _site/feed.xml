@@ -5,8 +5,8 @@
     <description>Hi.</description>
     <link>http://ka1em.github.io/</link>
     <atom:link href="http://ka1em.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 08 Aug 2016 12:21:44 +0800</pubDate>
-    <lastBuildDate>Mon, 08 Aug 2016 12:21:44 +0800</lastBuildDate>
+    <pubDate>Mon, 08 Aug 2016 12:25:55 +0800</pubDate>
+    <lastBuildDate>Mon, 08 Aug 2016 12:25:55 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -20,70 +20,87 @@
 &lt;h1 id=&quot;server&quot;&gt;1 server配置&lt;/h1&gt;
 &lt;p&gt;## 1.1 安装git&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;apt-get install git
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```shell
+apt-get install git
+```
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;## 1.2 添加git用户&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;adduser git
+&lt;h2 id=&quot;git&quot;&gt;1.2 添加git用户&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```shell
+adduser git
+```
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;section-1&quot;&gt;1.3 创建仓库，并初始化&lt;/h2&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir -p /srv/test-git.git
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```shell
+mkdir -p /srv/test-git.git
 git init --bare /srv/test-git.git
+```
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;section-2&quot;&gt;1.4 改变目录权限&lt;/h2&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chown -R git:git /srv/test-git.git
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```shell
+chown -R git:git /srv/test-git.git
+```
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;client&quot;&gt;1.5 添加client的公钥&lt;/h2&gt;
-&lt;p&gt;编辑此文件，将客户端的公钥添加进此文件&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;编辑此文件，将客户端的公钥添加进此文件
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;emacs /home/git/.ssh/authorized_keys
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+```shell
+emacs /home/git/.ssh/authorized_keys
+```
 
-&lt;p&gt;改变权限&lt;/p&gt;
+改变权限
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chown -R git:git /home/git/.ssh
+```shell
+chown -R git:git /home/git/.ssh
+```
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h1 id=&quot;client-1&quot;&gt;2 client配置&lt;/h1&gt;
 &lt;p&gt;## 2.1 创建key&lt;/p&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh-keygen -t rsa -b 4096 -c &lt;span class=&quot;s2&quot;&gt;&quot;xxx&quot;&lt;/span&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```shell
+ssh-keygen -t rsa -b 4096 -c &quot;xxx&quot;
+```
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;ssh&quot;&gt;2.2 配置ssh&lt;/h2&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;emacs ~/.ssh/config
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```shell
+emacs ~/.ssh/config
+```
 
-&lt;div class=&quot;language-config highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Host&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remote_ip&lt;/span&gt; - &lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;HostName&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remote_ip&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;git&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Port&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remote_port&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;IdentityFile&lt;/span&gt; ~/.&lt;span class=&quot;n&quot;&gt;ssh&lt;/span&gt;/&lt;span class=&quot;n&quot;&gt;id_rsa&lt;/span&gt;
+```config
+Host remote_ip - git server
+HostName remote_ip
+User git
+Port remote_port
+IdentityFile ~/.ssh/id_rsa
+```
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;test-git&quot;&gt;2.3 创建test-git&lt;/h2&gt;
 
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir ~/test-git
-&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/test-git
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;```shell
+mkdir ~/test-git
+cd ~/test-git
 git init
-touch &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;-file
-git add &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;-file
-git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;add test-file&quot;&lt;/span&gt;
+touch test-file
+git add test-file
+git commit -m &quot;add test-file&quot;
+```
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
