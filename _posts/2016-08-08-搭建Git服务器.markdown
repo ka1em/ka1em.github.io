@@ -1,0 +1,71 @@
+---
+layout: post
+title:  "搭建Git服务器"
+date:   2016-08-08 10:17:52 +0800
+categories: jekyll update
+---
+
+# 0 简单说明
+* 服务器为ubuntu14.04 LTS
+* 操作均在root权限下
+
+# 1 server配置
+## 1.1 安装git
+
+```shell
+apt-get install git
+```
+## 1.2 添加git用户
+```shell
+adduser git
+```
+## 1.3 创建仓库，并初始化
+```shell
+mkdir -p /srv/test-git.git
+git init --bare /srv/test-git.git
+```
+## 1.4 改变目录权限
+```shell
+chown -R git:git /srv/test-git.git
+```
+## 1.5 添加client的公钥
+编辑此文件，将客户端的公钥添加进此文件
+```shell
+emacs /home/git/.ssh/authorized_keys
+```
+改变权限
+```shell
+chown -R git:git /home/git/.ssh
+```
+# 2 client配置
+## 2.1 创建key
+```shell
+ssh-keygen -t rsa -b 4096 -c "xxx"
+```
+## 2.2 配置ssh
+```shell
+emacs ~/.ssh/config
+```
+```config
+Host remote_ip - git server
+HostName remote_ip
+User git
+Port remote_port
+IdentityFile ~/.ssh/id_rsa
+```
+## 2.3 创建test-git
+```shell
+mkdir ~/test-git
+cd ~/test-git
+git init
+touch test-file
+git add test-file
+git commit -m "add test-file"
+```
+## 2.4 添加远程库，并推送
+
+```shell
+git remote add origin git@remote_ip:/srv/test-git.git
+git push -u origin master
+```
+
