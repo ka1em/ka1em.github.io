@@ -74,54 +74,71 @@
 <div class="language-shell highlighter-rouge"><pre class="highlight"><code>apt-get install git
 </code></pre>
 </div>
-<p>## 1.2 添加git用户
-<code class="highlighter-rouge">shell
-adduser git
-</code>
-## 1.3 创建仓库，并初始化
-<code class="highlighter-rouge">shell
-mkdir -p /srv/test-git.git
+<p>## 1.2 添加git用户</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>adduser git
+</code></pre>
+</div>
+
+<h2 id="section-1">1.3 创建仓库，并初始化</h2>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>mkdir -p /srv/test-git.git
 git init --bare /srv/test-git.git
-</code>
-## 1.4 改变目录权限
-<code class="highlighter-rouge">shell
-chown -R git:git /srv/test-git.git
-</code>
-## 1.5 添加client的公钥
-编辑此文件，将客户端的公钥添加进此文件
-<code class="highlighter-rouge">shell
-emacs /home/git/.ssh/authorized_keys
-</code>
-改变权限
-<code class="highlighter-rouge">shell
-chown -R git:git /home/git/.ssh
-</code>
-# 2 client配置
-## 2.1 创建key
-<code class="highlighter-rouge">shell
-ssh-keygen -t rsa -b 4096 -c "xxx"
-</code>
-## 2.2 配置ssh
-<code class="highlighter-rouge">shell
-emacs ~/.ssh/config
-</code>
-<code class="highlighter-rouge">config
-Host remote_ip - git server
-HostName remote_ip
-User git
-Port remote_port
-IdentityFile ~/.ssh/id_rsa
-</code>
-## 2.3 创建test-git
-<code class="highlighter-rouge">shell
-mkdir ~/test-git
-cd ~/test-git
+</code></pre>
+</div>
+
+<h2 id="section-2">1.4 改变目录权限</h2>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>chown -R git:git /srv/test-git.git
+</code></pre>
+</div>
+
+<h2 id="client">1.5 添加client的公钥</h2>
+<p>编辑此文件，将客户端的公钥添加进此文件</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>emacs /home/git/.ssh/authorized_keys
+</code></pre>
+</div>
+
+<p>改变权限</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>chown -R git:git /home/git/.ssh
+</code></pre>
+</div>
+
+<h1 id="client-1">2 client配置</h1>
+<p>## 2.1 创建key</p>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>ssh-keygen -t rsa -b 4096 -c <span class="s2">"xxx"</span>
+</code></pre>
+</div>
+
+<h2 id="ssh">2.2 配置ssh</h2>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>emacs ~/.ssh/config
+</code></pre>
+</div>
+
+<div class="language-config highlighter-rouge"><pre class="highlight"><code><span class="n">Host</span> <span class="n">remote_ip</span> - <span class="n">git</span> <span class="n">server</span>
+<span class="n">HostName</span> <span class="n">remote_ip</span>
+<span class="n">User</span> <span class="n">git</span>
+<span class="n">Port</span> <span class="n">remote_port</span>
+<span class="n">IdentityFile</span> ~/.<span class="n">ssh</span>/<span class="n">id_rsa</span>
+</code></pre>
+</div>
+
+<h2 id="test-git">2.3 创建test-git</h2>
+
+<div class="language-shell highlighter-rouge"><pre class="highlight"><code>mkdir ~/test-git
+<span class="nb">cd</span> ~/test-git
 git init
-touch test-file
-git add test-file
-git commit -m "add test-file"
-</code>
-## 2.4 添加远程库，并推送</p>
+touch <span class="nb">test</span>-file
+git add <span class="nb">test</span>-file
+git commit -m <span class="s2">"add test-file"</span>
+</code></pre>
+</div>
+
+<h2 id="section-3">2.4 添加远程库，并推送</h2>
 
 <div class="language-shell highlighter-rouge"><pre class="highlight"><code>git remote add origin git@remote_ip:/srv/test-git.git
 git push -u origin master
